@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "UI tests for Localcoding.us",
   "scripts": {
-    "cy:open": "npx cypress open"
+    "cy:open": "npx cypress open",
+    "cy run": "npx cypress run"
   },
   "keywords": [],
   "author": "Alesya Alekseeva",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^10.11.0"
+    "cypress": "^10.11.0",
+    "cypress-xpath": "^2.0.1"
+  },
+  "dependencies": {
+    "@cypress/xpath": "^2.0.3"
   }
 }
