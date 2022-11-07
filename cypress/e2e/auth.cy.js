@@ -9,9 +9,9 @@ describe('Authentication', () => {
 
 
     cy.get('#normal_login_email')
-      .type('annalesh@mail.ru')
+      .type(Cypress.env('EMAIL'))
     cy.get('#normal_login_password')
-      .type('05122006Anna')
+      .type(Cypress.env('PASSWORD'))
     cy.get('.login-form-button')
       .click()
 
@@ -24,7 +24,7 @@ describe('Authentication', () => {
   it('2. Sign in with invalid credentials', () => {
 
     cy.get('#normal_login_email')
-      .type('testh@gmail.com')
+      .type(Cypress.env('EMAIL'))
     cy.get('#normal_login_password')
       .type('123456')
     cy.get('.login-form-button')
