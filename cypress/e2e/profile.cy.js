@@ -1,10 +1,9 @@
 describe('Profile', () => {
 
   beforeEach(() => {
-    cy.visit('/')
-    window.localStorage.setItem('token', Cypress.env('TOKEN'))
-    window.localStorage.setItem('userId', Cypress.env('USER_ID'))
-    window.localStorage.setItem('lang', 'ru')
+
+    cy.login(Cypress.env('TOKEN'), Cypress.env('USER_ID'))
+
     cy.visit(`/profile/${Cypress.env('USER_ID')}`)
 
   })
