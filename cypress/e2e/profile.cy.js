@@ -8,7 +8,7 @@ describe('Profile', () => {
 
   })
 
-  it('Daily report creation', () => {
+  it.skip('Daily report creation', () => {
     const timestamp = new Date().getTime()
     const description = `${timestamp} 123456789012345678901234567890`
 
