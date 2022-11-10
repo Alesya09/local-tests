@@ -1,60 +1,48 @@
+import LoginPage from "../pages/login.page";
+import ProfilePage from '../pages/profile.page'
+
 describe('Authentication', () => {
 
   beforeEach(() => {
-    cy.visit('/user/login')
+    LoginPage.open()
   })
 
 
   it('1. Sign in with valid credentials', () => {
 
+    LoginPage.login(Cypress.env('EMAIL'), Cypress.env('PASSWORD'))
 
-    cy.get('#normal_login_email')
-      .type(Cypress.env('EMAIL'))
-    cy.get('#normal_login_password')
-      .type(Cypress.env('PASSWORD'))
-    cy.get('.login-form-button')
-      .click()
-
-    cy.get('.ant-avatar-square')
-      .should('be.visible')
+    ProfilePage.iconAvatar.should('be.visible')
     cy.location('pathname')
       .should('include', 'profile')
   })
 
   it('2. Sign in with invalid credentials', () => {
 
-    cy.get('#normal_login_email')
-      .type(Cypress.env('EMAIL'))
-    cy.get('#normal_login_password')
-      .type('123456')
-    cy.get('.login-form-button')
-      .click()
+    LoginPage.login(Cypress.env('EMAIL'), '123456')
+    
+    LoginPage.toast.should('have.text', 'Auth failed')
 
-    cy.get('.ant-notification-notice-message')
-      .should('have.text', 'Auth failed')
+
   })
 
   it('3. Credentials validation', () => {
 
-    cy.get('#normal_login_email')
-      .type('test@')
+    LoginPage.inputEmail.type('test@')
 
-    cy.xpath('//div[contains(@class, "ant-form-item-has-error")][.//input[@id="normal_login_email"]]//div[@class="ant-form-item-explain-error"]')
+    LoginPage.emailValidation
       .should('have.text', '\'email\' is not a valid email')
 
+    LoginPage.inputEmail.clear()
 
-    cy.get('#normal_login_email')
-      .clear()
-
-    cy.xpath('//div[contains(@class, "ant-form-item-has-error")][.//input[@id="normal_login_email"]]//div[@class="ant-form-item-explain-error"]')
+    LoginPage.emailValidation
       .should('have.text', 'Required')
 
-
-    cy.get('#normal_login_password')
+    LoginPage.inputPassword
       .type('test')
       .clear()
 
-    cy.xpath('//div[contains(@class, "ant-form-item-has-error")][.//input[@id="normal_login_password"]]//div[@class="ant-form-item-explain-error"]')
+    LoginPage.passwordValidation
       .should('have.text', 'Required')
 
   })
