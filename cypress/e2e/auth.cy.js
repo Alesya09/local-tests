@@ -1,5 +1,5 @@
 import LoginPage from "../pages/login.page";
-import ProfilePage from '../pages/profile.page'
+import ProfilePage from '../pages/app/profile.page'
 
 describe('Authentication', () => {
 
@@ -20,7 +20,7 @@ describe('Authentication', () => {
   it('2. Sign in with invalid credentials', () => {
 
     LoginPage.login(Cypress.env('EMAIL'), '123456')
-    
+
     LoginPage.toast.should('have.text', 'Auth failed')
 
 

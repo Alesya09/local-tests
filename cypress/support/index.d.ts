@@ -7,4 +7,5 @@ declare namespace Cypress {
          */
         login(token: string, userId: string): Chainable<any>
     }
+
 }
