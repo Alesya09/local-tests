@@ -8,6 +8,6 @@ module.exports = defineConfig({
     baseUrl: 'https://localcoding.us',
 
     viewportWidth: 1280,
-    viewportHeight: 720
+    viewportHeight: 720,
   },
 });
